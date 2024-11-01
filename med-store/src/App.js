@@ -2,7 +2,7 @@
 
 function App() {
   return (
-    <h1>BEBEBE</h1>
+    <div>ADWWD<h1>BEBEBE</h1></div>
   );
 }
 
