@@ -16,7 +16,7 @@ function App() {
       <Header />
 
       <div className="content p-40 ml-30">
-        <h1 className="mb-40">Название направления врача</h1>
+        <h1 className="mb-40">Название специальности врача</h1>
         <div className="d-flex">
           {arr.map((obj) => (
             <Card />
