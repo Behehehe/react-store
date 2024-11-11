@@ -1,3 +1,4 @@
+import React from 'react';
 import Card from './components/Card';
 import Header from './components/Header';
 import Cart from './components/Cart';
@@ -13,21 +14,22 @@ const arr = [
 
 
 function App() {
-  return (
+ return (
     <div className="wrapper clear">
       <Cart />
 
       <Header />
 
       <div className="content p-40 ml-30">
-          <h1 className="mb-40">Название специальности врача</h1>
+        <h1 className="mb-40">Название специальности врача</h1>
         <div className="d-flex">
 
           {arr.map((obj) => (
             <Card title={obj.title}
               price={obj.price}
               imageUrl={obj.imageUrl}
-              onClick={() => console.log(obj)} />
+              onClickFavourite={() => console.log("Добавили в закладки")}
+              onClickPlus={() => console.log("Добавили в корзину")} />
           ))}
 
         </div>
