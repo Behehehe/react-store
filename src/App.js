@@ -14,6 +14,7 @@ const arr = [
 
 
 function App() {
+  const [cartOpened, setCartOpened] = React.useState(false);
  return (
     <div className="wrapper clear">
       <Cart />

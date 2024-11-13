@@ -1,6 +1,6 @@
 function Cart() {
     return (
-        <div className="overlay">
+        <div style={{display: 'none' }} className="overlay">
             <div className="drawer">
                 <div className="exitCart">
                     <h2 className="d-flex justify-between mb-30">Корзина<img className="opacity-3 cu-p" width={32} height={32} src="/img/remove.svg" alt="remove" />
