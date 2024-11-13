@@ -29,6 +29,16 @@ header {
     margin: 0;
   }
 
+  li {
+
+    svg:hover path,
+    svg:focus path,
+    svg:hover circle,
+    svg:focus circle {
+      stroke: #8168f0;
+    }
+  }
+
   .search-block {
     padding: 0 10px;
     img {

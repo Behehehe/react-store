@@ -17,9 +17,9 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
  return (
     <div className="wrapper clear">
-      <Cart />
+      {cartOpened && <Cart onClose={() => setCartOpened(false)}/>}
 
-      <Header />
+      <Header onClickCart={() => setCartOpened(true)} />
 
       <div className="content p-40 ml-30">
         <h1 className="mb-40">Название специальности врача</h1>
