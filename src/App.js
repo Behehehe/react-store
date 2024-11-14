@@ -4,17 +4,11 @@ import Header from './components/Header';
 import Cart from './components/Cart';
 
 
-const arr = [
-  { title: 'Ронами Валерий Гусейнович', price: 1000, imageUrl: "/img/doctors/1.jpg" },
-  { title: 'Лубиков Алексей Евгеньевич', price: 2000, imageUrl: "/img/doctors/2.jpg" },
-  { title: 'Ардашева Елена Игоревна', price: 3000, imageUrl: "/img/doctors/3.jpg" },
-  { title: 'Шатрова Валентина Петровна', price: 4000, imageUrl: "/img/doctors/4.jpg" },
-  { title: 'Бандурина Татьяна Юрьевна', price: 5000, imageUrl: "/img/doctors/5.jpg" },
-]
-
-
 function App() {
+  const [doctors, setDoctors] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
+
+
  return (
     <div className="wrapper clear">
       {cartOpened && <Cart onClose={() => setCartOpened(false)}/>}
@@ -23,9 +17,9 @@ function App() {
 
       <div className="content p-40 ml-30">
         <h1 className="mb-40">Название специальности врача</h1>
-        <div className="d-flex">
 
-          {arr.map((obj) => (
+        <div className="d-flex flex-wrap">
+          {doctors.map((obj) => (
             <Card title={obj.title}
               price={obj.price}
               imageUrl={obj.imageUrl}
