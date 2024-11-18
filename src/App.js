@@ -8,10 +8,19 @@ function App() {
   const [doctors, setDoctors] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
-
- return (
+  React.useEffect(() => {
+    fetch('https://67367294aafa2ef222308aa6.mockapi.io/Doctors')
+      .then(res => {
+        return res.json();
+      })
+      .then(json => {
+        setDoctors(json);
+      });
+  }, []);
+  
+  return (
     <div className="wrapper clear">
-      {cartOpened && <Cart onClose={() => setCartOpened(false)}/>}
+      {cartOpened && <Cart onClose={() => setCartOpened(false)} />}
 
       <Header onClickCart={() => setCartOpened(true)} />
 
