@@ -6,6 +6,7 @@ import Cart from './components/Cart';
 
 function App() {
   const [doctors, setDoctors] = React.useState([]);
+  const [cartDoctors, setCartDoctors] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -17,10 +18,14 @@ function App() {
         setDoctors(json);
       });
   }, []);
-  
+
+  const odAddToCart = (obj) => {
+    setCartDoctors((prev) => [...prev, obj])
+  };
+
   return (
     <div className="wrapper clear">
-      {cartOpened && <Cart onClose={() => setCartOpened(false)} />}
+      {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} />}
 
       <Header onClickCart={() => setCartOpened(true)} />
 
@@ -28,12 +33,12 @@ function App() {
         <h1 className="mb-40">Название специальности врача</h1>
 
         <div className="d-flex flex-wrap">
-          {doctors.map((obj) => (
-            <Card title={obj.title}
-              price={obj.price}
-              imageUrl={obj.imageUrl}
+          {doctors.map((item) => (
+            <Card title={item.title}
+              price={item.price}
+              imageUrl={item.imageUrl}
               onClickFavourite={() => console.log("Добавили в закладки")}
-              onClickPlus={() => console.log("Добавили в корзину")} />
+              onPlus={(obj) => odAddToCart(obj)} />
           ))}
 
         </div>

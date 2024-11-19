@@ -1,111 +1,25 @@
-function Cart(props) {
+function Cart({onClose, doctors = []}) {
     return (
         <div className="overlay">
             <div className="drawer">
                 <div className="exitCart">
-                    <h2 className="d-flex justify-between mb-30">Корзина<img onClick={props.onClose} className="opacity-3 cu-p" width={32} height={32} src="/img/remove.svg" alt="Close" />
+                    <h2 className="d-flex justify-between mb-30">Корзина<img onClick={onClose} className="opacity-3 cu-p" width={32} height={32} src="/img/remove.svg" alt="Close" />
                     </h2>
                 </div>
 
                 <div className="items" style={{ flex: 1 }}>
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/1.jpg)' }} className="cartItemImg"></div>
+                    {doctors.map((obj) => (
+                        <div className="cartItem d-flex align-center mb-20">
+                            <div style={{ backgroundImage: `url(${obj.imageUrl  })` }} className="cartItemImg"></div>
 
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
+                            <div className="mr-20 flex">
+                                <h5>Название направления врача</h5>
+                                <p className="mb-5">{obj.title}</p>
+                                <b>{obj.price} руб.</b>
+                            </div>
+                            <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
                         </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/2.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/3.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/4.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/5.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/1.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/2.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/3.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Ронами Валерий Гусейнович</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
-
-                    <div className="cartItem d-flex align-center mb-20">
-                        <div style={{ backgroundImage: 'url(/img/doctors/4.jpg)' }} className="cartItemImg"></div>
-
-                        <div className="mr-20 flex">
-                            <h5>Название направления врача</h5>
-                            <p className="mb-5">Лубенников Александр Евгеньевич</p>
-                            <b>1000 руб.</b>
-                        </div>
-                        <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
-                    </div>
+                    ))}
                 </div>
 
 
