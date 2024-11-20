@@ -1,4 +1,4 @@
-function Cart({onClose, doctors = []}) {
+ function Cart({onClose, doctors = []}) {
     return (
         <div className="overlay">
             <div className="drawer">
