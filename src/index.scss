@@ -38,26 +38,28 @@ header {
       stroke: #8168f0;
     }
   }
-
-  .search-block {
-    padding: 0 10px;
-    img {
-      background: #1C274C;
-    }
-    input {
-      border-radius: 40px;
-      width: 600px;
-      height: 40px;
-      padding: 10px;
-      font-size: 16px;
-    }
-  }
 }
 
 
 .content {
   h1 {
     margin: 0;
+  }
+
+  .search-block {
+    padding: 0 10px;
+
+    img {
+      background: #1C274C;
+    }
+
+    input {
+      border-radius: 40px;
+      width: 440px;
+      height: 40px;
+      padding: 10px;
+      font-size: 16px;
+      }
   }
 }
 
@@ -87,7 +89,7 @@ header {
   .exitCart {
     img {
       transition: opacity 0.15s ease-in-out;
-  
+
       &:hover {
         opacity: 1;
       }
@@ -98,7 +100,7 @@ header {
     overflow: auto;
     margin-bottom: 40px;
   }
-  
+
   h2 {
     margin: 0;
   }

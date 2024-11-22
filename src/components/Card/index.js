@@ -1,11 +1,11 @@
 import React from 'react';
 import cardStyles from './Card.module.scss';
 
-function Card({ onClickFavourite, title, imageUrl, price, onPlus }) {
+function Card({ onClickFavourite, title, imageUrl, price, onPlus, rank }) {
     const [isAdded, setIsAdded] = React.useState(false);
 
     const onClickPlus = () => {
-        onPlus({ title, imageUrl, price });
+        onPlus({ title, imageUrl, price, rank });
         setIsAdded(!isAdded);
     }
 
@@ -20,6 +20,7 @@ function Card({ onClickFavourite, title, imageUrl, price, onPlus }) {
             </div>
 
             <img width={150} height={150} src={imageUrl} alt="doctors" />
+            <b>{rank}</b>
             <h5>{title}</h5>
             <div className="d-flex justify-between align-center">
                 <div className="d-flex flex-column">
