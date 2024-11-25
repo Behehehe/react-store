@@ -1,4 +1,4 @@
- function Cart({onClose, doctors = []}) {
+function Cart({ onClose, onRemove, doctors = [] }) {
     return (
         <div className="overlay">
             <div className="drawer">
@@ -7,17 +7,29 @@
                     </h2>
                 </div>
 
+
+                <div className="cartEmpty d-flex align-center justify-center flex-column flex">
+                    <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="emptyCart" />
+                    <h2>Корзина пустая</h2>
+                    <p className="opasity-6">Добавьте хотя бы одного врача, чтобы провести запись.</p>
+                    <button className="greenButton">
+                        <img width={14} height={15} src="/img/arrow.svg" alt="arrow" />
+                        Вернуться назад
+                    </button>
+                </div>
+
+
                 <div className="items" style={{ flex: 1 }}>
                     {doctors.map((obj) => (
                         <div className="cartItem d-flex align-center mb-20">
-                            <div style={{ backgroundImage: `url(${obj.imageUrl  })` }} className="cartItemImg"></div>
+                            <div style={{ backgroundImage: `url(${obj.imageUrl})` }} className="cartItemImg"></div>
 
                             <div className="mr-20 flex">
-                                <h5>Название направления врача</h5>
+                                <h5>{obj.rank}</h5>
                                 <p className="mb-5">{obj.title}</p>
                                 <b>{obj.price} руб.</b>
                             </div>
-                            <img className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
+                            <img onClick={() => onRemove(obj.id)} className="removeBtn" width={32} height={32} src="/img/remove.svg" alt="remove" />
                         </div>
                     ))}
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import Card from './components/Card';
 import Header from './components/Header';
 import Cart from './components/Cart';
@@ -10,13 +11,13 @@ function App() {
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
-    fetch('https://67367294aafa2ef222308aa6.mockapi.io/Doctors')
-      .then(res => {
-        return res.json();
-      })
-      .then(json => {
-        setDoctors(json);
-      });
+    axios.get('https://67367294aafa2ef222308aa6.mockapi.io/Doctors').then(res => {
+      setDoctors(res.data);
+    });
+
+    axios.get('https://67367294aafa2ef222308aa6.mockapi.io/Cart').then(res => {
+      setCartDoctors(res.data);
+    });
   }, []);
 
   const [searchValue, setSearchValue] = React.useState('');
@@ -27,14 +28,18 @@ function App() {
 
 
   const odAddToCart = (obj) => {
+    axios.post('https://67367294aafa2ef222308aa6.mockapi.io/Cart', obj);
     setCartDoctors((prev) => [...prev, obj])
   };
 
-
+  const onRemoveDoctor = (id) => {
+    axios.delete(`https://67367294aafa2ef222308aa6.mockapi.io/Cart/${id}`);
+    setCartDoctors((prev) => prev.filter(doctors => doctors.id !== id));
+  }
 
   return (
     <div className="wrapper clear">
-      {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} />}
+      {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} onRemove = {onRemoveDoctor} />}
 
       <Header onClickCart={() => setCartOpened(true)} />
 
@@ -51,7 +56,7 @@ function App() {
           </div>
         </div>
         <div className="d-flex flex-wrap">
-          {doctors.filter(item => item.rank.includes(searchValue)).map((item, index) => (
+          {doctors.filter(item => item.rank.toLowerCase().includes(searchValue.toLowerCase())).map((item, index) => (
             <Card
               key={index}
               rank={item.rank}
