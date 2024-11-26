@@ -3,19 +3,25 @@ import cardStyles from './Card.module.scss';
 
 function Card({ onClickFavourite, title, imageUrl, price, onPlus, rank }) {
     const [isAdded, setIsAdded] = React.useState(false);
+    const [isFavourite, setIsFavourite] = React.useState(false);
 
     const onClickPlus = () => {
         onPlus({ title, imageUrl, price, rank });
         setIsAdded(!isAdded);
     }
 
+    const addOnFavourite= () => {
+        setIsFavourite(!isFavourite);
+
+    }
+
     return (
         <div className={cardStyles.card}>
 
-            <div className={cardStyles.favourite}>
+            <div className={cardStyles.favourite} onClick={addOnFavourite}>
                 <img className="opacity-3"
                     width={32} height={32}
-                    src="/img/notliked.svg" alt="notliked"
+                    src={isFavourite ? "/img/liked.svg" : "/img/notliked.svg"} alt="notliked"
                     onClick={onClickFavourite} />
             </div>
 

@@ -41,6 +41,34 @@ header {
 }
 
 
+.cartEmpty {
+  p {
+    width: 280px;
+    line-height: 24px;
+  }
+
+  .greenButton {
+    width: 245px;
+    margin-top: 20px;
+
+    &:hover {
+
+      img {
+        transform: rotate(180deg) translateX(3px);
+      }
+    }
+
+    img {
+      position: relative;
+      top: 1px;
+      transform: rotate(180deg);
+      margin-right: 15px;
+      transition: transform 0.15s ease-in-out;
+    }
+  }
+}
+
+
 .content {
   h1 {
     margin: 0;
@@ -59,7 +87,7 @@ header {
       height: 40px;
       padding: 10px;
       font-size: 16px;
-      }
+    }
   }
 }
 
@@ -85,16 +113,6 @@ header {
   background: #FFFFFF;
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 30px;
-
-  .exitCart {
-    img {
-      transition: opacity 0.15s ease-in-out;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-  }
 
   .items {
     overflow: auto;

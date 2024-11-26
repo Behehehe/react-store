@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 function App() {
   const [doctors, setDoctors] = React.useState([]);
   const [cartDoctors, setCartDoctors] = React.useState([]);
+  const [favourite, setFavourite] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -32,6 +33,11 @@ function App() {
     setCartDoctors((prev) => [...prev, obj])
   };
 
+  const onFavourite = (obj) => {
+    axios.post('https://67464f6f512ddbd807fb7e60.mockapi.io/favourites', obj);
+    setFavourite((prev) => [...prev, obj])
+  };
+
   const onRemoveDoctor = (id) => {
     axios.delete(`https://67367294aafa2ef222308aa6.mockapi.io/Cart/${id}`);
     setCartDoctors((prev) => prev.filter(doctors => doctors.id !== id));
@@ -39,7 +45,7 @@ function App() {
 
   return (
     <div className="wrapper clear">
-      {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} onRemove = {onRemoveDoctor} />}
+      {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} onRemove={onRemoveDoctor} />}
 
       <Header onClickCart={() => setCartOpened(true)} />
 
@@ -63,7 +69,7 @@ function App() {
               title={item.title}
               price={item.price}
               imageUrl={item.imageUrl}
-              onClickFavourite={() => console.log("Добавили в закладки")}
+              onClickFavourite={(obj) => onFavourite(obj)}
               onPlus={(obj) => odAddToCart(obj)} />
           ))}
 
