@@ -9,7 +9,7 @@ function Cart({ onClose, onRemove, doctors = [] }) {
 
 
                 <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-                    <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.jpg" alt="emptyCart" />
+                    <img className="mb-20" width="120px" height="120px" src="/img/empty-cart.png" alt="emptyCart" />
                     <h2>Корзина пустая</h2>
                     <p className="opasity-6">Добавьте хотя бы одного врача, чтобы провести запись.</p>
                     <button className="greenButton">
