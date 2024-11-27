@@ -23,7 +23,7 @@ function Card({ onClickFavourite, title, imageUrl, price, onPlus, rank }) {
                 <img className="opacity-3"
                     width={32} height={32}
                     src={isFavourite ? "/img/liked.svg" : "/img/notliked.svg"} alt="notliked"
-                    onClick={onClickFavourite} />
+                    onClick={addOnFavourite} />
             </div>
 
             <img width={150} height={150} src={imageUrl} alt="doctors" />
