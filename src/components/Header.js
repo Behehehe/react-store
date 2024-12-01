@@ -1,15 +1,20 @@
+import { Link } from "react-router-dom";
+
+
 function Header(props) {
     return (
         <header className="d-flex justify-between align-center p-40">
+            <Link to="/">
+                <div className="d-flex align-center">
 
-            <div className="d-flex align-center">
-                <img className="ml-30" width={40} height={40} src="/img/logo.svg" alt="logo" />
-                <div className="headerInfo ml-10">
-                    <h3 className="text-uppercase">On-Doc</h3>
-                    <p className="opacity-5">Запись к нужному врачу</p>
+                    <img className="ml-30" width={40} height={40} src="/img/logo.svg" alt="logo" />
+                    <div className="headerInfo ml-10">
+                        <h3 className="text-uppercase">On-Doc</h3>
+                        <p className="opacity-5">Запись к нужному врачу</p>
+                    </div>
+
                 </div>
-            </div>
-
+            </Link>
 
             <ul className="d-flex">
                 <li onClick={props.onClickCart} className="mr-45 cu-p">
@@ -27,8 +32,9 @@ function Header(props) {
                 </li>
 
                 <li className="mr-45">
-                    <svg className="Heart" width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.96173 18.9109L9.42605 18.3219L8.96173 18.9109ZM12 5.50063L11.4596 6.02073C11.601 6.16763 11.7961 6.25063 
+                    <Link to="/favourites">
+                        <svg className="Heart" width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.96173 18.9109L9.42605 18.3219L8.96173 18.9109ZM12 5.50063L11.4596 6.02073C11.601 6.16763 11.7961 6.25063 
                             12 6.25063C12.2039 6.25063 12.399 6.16763 12.5404 6.02073L12 5.50063ZM15.0383 18.9109L15.5026 19.4999L15.0383 18.9109ZM7.00061 
                             16.4209C6.68078 16.1577 6.20813 16.2036 5.94491 16.5234C5.68169 16.8432 5.72758 17.3159 6.04741 17.5791L7.00061 16.4209ZM2.34199 
                             13.4115C2.54074 13.7749 2.99647 13.9084 3.35988 13.7096C3.7233 13.5108 3.85677 13.0551 3.65801 12.6917L2.34199 13.4115ZM2.75 9.1371C2.75 
@@ -43,7 +49,8 @@ function Header(props) {
                             15.5026 19.4999L14.574 18.3219ZM9.42605 18.3219C8.63014 17.6945 7.82129 17.0963 7.00061 
                             16.4209L6.04741 17.5791C6.87768 18.2624 7.75472 18.9144 8.49742 19.4999L9.42605 18.3219ZM3.65801 12.6917C3.0968 11.6656 2.75 10.5033 
                             2.75 9.1371H1.25C1.25 10.7746 1.66995 12.1827 2.34199 13.4115L3.65801 12.6917Z" fill="#1C274C" stroke-width="1.5" stroke-linecap="" />
-                    </svg>
+                        </svg>
+                    </Link>
                 </li>
 
                 <li className="mr-30">

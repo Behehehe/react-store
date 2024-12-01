@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Route, Routes } from "react-router-dom";
+
 import Card from './components/Card';
 import Header from './components/Header';
 import Cart from './components/Cart';
@@ -48,6 +50,9 @@ function App() {
       {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} onRemove={onRemoveDoctor} />}
 
       <Header onClickCart={() => setCartOpened(true)} />
+
+      {/* <Routes path="/favourites">вФЦвфцвфцвфцв</Routes> */}
+
 
       <div className="content p-40 ml-30">
         <div className='d-flex align-center justify-between mb-40'>
