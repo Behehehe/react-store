@@ -10,7 +10,6 @@ import Favourites from './pages/Favourites';
 
 
 
-
 function App() {
   const [doctors, setDoctors] = React.useState([]);
   const [cartDoctors, setCartDoctors] = React.useState([]);
@@ -37,64 +36,74 @@ function App() {
     setSearchValue(event.target.value);
   };
 
-
-  const odAddToCart = (obj) => {
-    axios.post('https://67367294aafa2ef222308aa6.mockapi.io/Cart', obj);
-    setCartDoctors((prev) => [...prev, obj])
-  };
-
-  const onFavourite = async (obj) => {
+  const odAddToCart = async (obj) => {
     try {
-      const existingItem = favourite.find(favObj => favObj.id === obj.id);
+      const existingItem = cartDoctors.find(cartObj => cartObj.id === obj.id || cartObj.doctorId === obj.doctorId); 
+
       if (existingItem) {
-        await axios.delete(`https://67464f6f512ddbd807fb7e60.mockapi.io/favourites/${existingItem.id}`);
-        console.log(`Товар ${existingItem.id} удалён с бэка, но остаётся визуально.`);
+        await axios.delete(`https://67367294aafa2ef222308aa6.mockapi.io/Cart/${existingItem.id}`);
+        setCartDoctors((prev) => prev.filter(cartItem => cartItem.id !== existingItem.id));
       } else {
-        const { data } = await axios.post('https://67464f6f512ddbd807fb7e60.mockapi.io/favourites', obj);
-        setFavourite((prev) => [...prev, data]);
+        const { data } = await axios.post('https://67367294aafa2ef222308aa6.mockapi.io/Cart', obj);
+        setCartDoctors((prev) => [...prev, data]);
       }
     } catch (error) {
-      console.error('Ошибка добавления/удаления избранного:', error);
+      console.error('Ошибка добавления/удаления из корзины:', error);
     }
   };
-  
 
 
-  const onRemoveDoctor = (id) => {
-    axios.delete(`https://67367294aafa2ef222308aa6.mockapi.io/Cart/${id}`);
-    setCartDoctors((prev) => prev.filter((doctors) => doctors.id !== id));
+    const onFavourite = async (obj) => {
+      try {
+        const existingItem = favourite.find(favObj => favObj.id === obj.id);
+        if (existingItem) {
+          await axios.delete(`https://67464f6f512ddbd807fb7e60.mockapi.io/favourites/${existingItem.id}`);
+        } else {
+          const { data } = await axios.post('https://67464f6f512ddbd807fb7e60.mockapi.io/favourites', obj);
+          setFavourite((prev) => [...prev, data]);
+        }
+      } catch (error) {
+        console.error('Ошибка добавления/удаления избранного:', error);
+      }
+    };
+
+
+
+    const onRemoveDoctor = (id) => {
+      axios.delete(`https://67367294aafa2ef222308aa6.mockapi.io/Cart/${id}`);
+      setCartDoctors((prev) => prev.filter((doctors) => doctors.id !== id));
+    }
+
+    return (
+      <div className="wrapper clear">
+        {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} onRemove={onRemoveDoctor} />}
+
+        <Header onClickCart={() => setCartOpened(true)} />
+
+        <Routes>
+          <Route path="/" element={
+            <Home
+              doctors={doctors}
+              searchValue={searchValue}
+              onFavourite={onFavourite}
+              odAddToCart={odAddToCart}
+              onChangeSearchInput={onChangeSearchInput}
+            />
+          } />
+          <Route path="/favourites" element={
+            <Favourites
+              doctors={favourite}
+              onFavourite={onFavourite}
+            />
+          } />
+        </Routes>
+
+
+
+      </div>
+
+    );
   }
 
-  return (
-    <div className="wrapper clear">
-      {cartOpened && < Cart doctors={cartDoctors} Cart onClose={() => setCartOpened(false)} onRemove={onRemoveDoctor} />}
 
-      <Header onClickCart={() => setCartOpened(true)} />
-
-      <Routes>
-        <Route path="/" element={
-          <Home
-            doctors={doctors}
-            searchValue={searchValue}
-            onFavourite={onFavourite}
-            odAddToCart={odAddToCart}
-            onChangeSearchInput={onChangeSearchInput}
-          />
-        } />
-        <Route path="/favourites" element={
-          <Favourites
-            doctors={favourite}
-            onFavourite={onFavourite}
-          />
-        } />
-      </Routes>
-
-
-
-    </div>
-
-  );
-}
-
-
-export default App;
+  export default App;
