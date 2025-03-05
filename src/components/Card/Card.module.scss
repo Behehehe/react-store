@@ -3,7 +3,7 @@
   padding: 30px;
   width: 220px;
   border-radius: 40px;
-  margin-right: 24px;
+  margin-right: 20px;
   transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
   margin-bottom: 30px;
 
@@ -44,5 +44,9 @@
         opacity: 1;
       }
     }
+  }
+
+  b {
+    color: #ff7086
   }
 }
